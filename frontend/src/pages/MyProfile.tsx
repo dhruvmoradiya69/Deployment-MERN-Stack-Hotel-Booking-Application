@@ -47,7 +47,9 @@ const MyProfile = () => {
     return <div>Loading...</div>;
   }
 
-
+  if (!profile) {
+    return <div>No profile data available</div>;
+  }
   
   return (
     <div className="container mx-auto py-10">
