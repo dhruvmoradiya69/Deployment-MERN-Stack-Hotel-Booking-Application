@@ -16,7 +16,7 @@ const MyProfile = () => {
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProfileFormData>();
 
-  const { data: isLoading } = useQuery("profile", apiClient.getProfile, {
+  const { data: profile, isLoading } = useQuery("profile", apiClient.getProfile, {
     onSuccess: (data) => {
       setValue("firstName", data.firstName);
       setValue("lastName", data.lastName);
