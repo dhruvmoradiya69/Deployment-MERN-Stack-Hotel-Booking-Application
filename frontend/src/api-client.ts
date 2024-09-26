@@ -9,6 +9,41 @@ import {
 import { BookingFormData } from "./forms/BookingForm/BookingForm";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
+export const getProfile = async (): Promise<UserType> => {
+  const response = await fetch(`${API_BASE_URL}/api/my-profile/profile`, {
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Error fetching profile");
+  }
+  return response.json();
+};
+
+// Update user profile
+export const updateProfile = async (formData: {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+}) => {
+  const response = await fetch(`${API_BASE_URL}/api/my-profile/profile`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+
+  return responseBody;
+};
+
 export const fetchCurrentUser = async (): Promise<UserType> => {
   const response = await fetch(`${API_BASE_URL}/api/users/me`, {
     credentials: "include",
