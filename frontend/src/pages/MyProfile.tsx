@@ -7,7 +7,7 @@ type ProfileFormData = {
   firstName: string;
   lastName: string;
   email: string;
-  password?: string;  // Optional but required for profile update
+  password?: string;
 };
 
 const MyProfile = () => {
