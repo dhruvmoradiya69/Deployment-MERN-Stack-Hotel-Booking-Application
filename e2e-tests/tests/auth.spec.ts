@@ -28,7 +28,7 @@ test("should allow user to register", async ({ page }) => {
   await page.goto(UI_URL);
 
   await page.getByRole("link", { name: "Sign In" }).click();
-  await page.getByRole("link", { name: "Create account" }).click();
+  await page.getByRole("link", { name: "Create an account here" }).click();
   await expect(
     page.getByRole("heading", { name: "Create an Account" })
   ).toBeVisible();
