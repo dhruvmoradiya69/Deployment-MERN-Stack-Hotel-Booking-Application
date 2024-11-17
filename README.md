@@ -77,7 +77,7 @@ STRIPE_API_KEY=
    ```
 
 2. Set:
-   - `VITE_API_BASE_URL` to the backend server URL (e.g., `http://localhost:7000`).
+   - `VITE_API_BASE_URL` to the backend server URL (e.g., `http://localhost:3000`).
    - `VITE_STRIPE_PUB_KEY` to the public Stripe key.
 
 ---
