@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:7.0.12
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    networks:
+      - mern-network     
+
+  backend:
+    image: dhruvmoradiya69000/mern-backend:latest
+    container_name: backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env 
+    networks:
+      - mern-network
+    depends_on:
+      - mongo  
+
+  frontend:
+    image: dhruvmoradiya69000/mern-frontend:latest
+    container_name: frontend
+    restart: unless-stopped  
+    ports:
+      - "5173:5173"
+    networks:
+      - mern-network
+    depends_on:
+      - backend  
+    env_file:
+      - ./frontend/.env  
+       
+
+networks:
+  mern-network:
+    driver: bridge
+    # docker-compose up --build -d
+
