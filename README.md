@@ -32,7 +32,7 @@ Before starting, ensure you have the following installed:
    - Alternatively, clone the repository directly using the following command:
 
      ```bash
-     git clone https://github.com/chrisblakely01/mern-booking-app.git
+     https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git
      ```
 
 2. Navigate into the project directory:
