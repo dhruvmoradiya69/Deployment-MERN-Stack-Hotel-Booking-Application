@@ -4,6 +4,18 @@ This guide walks you through the process of setting up the MERN Booking App on y
 
 ---
 
+## **🔑 Key Features of Our Booking App**
+
+1. **User Authentication**: Learn to implement secure login and registration using HTTP cookies and JWT for a seamless user experience.  
+2. **Hotel Management**: Master the art of adding, editing, and viewing hotels. We cover everything from handling form inputs to managing state.  
+3. **Image Uploads**: Dive into integrating image uploads, a crucial feature for any booking platform.  
+4. **Search, Sort, & Filter**: Enhance the user experience with functionalities to search, sort, and filter hotels, making it easy for users to find their perfect stay.  
+5. **Online Payments**: Integrate Stripe for secure and efficient hotel booking payments.  
+6. **Booking Management**: Implement the feature to view and manage bookings, essential for any booking application.  
+7. **Recent Hotels on Home Page**: Display recently added hotels on the home page, keeping the content dynamic and engaging.
+
+---
+
 ## **Prerequisites**
 
 Before starting, ensure you have the following installed:
@@ -13,16 +25,20 @@ Before starting, ensure you have the following installed:
 
 ---
 
-## **Cloning the Repository**
+## **Cloning or Forking the Repository**
 
-1. Clone the repository to your local machine:
+1. **Clone or Fork**:  
+   - If you want to contribute to the project, fork the repository by clicking the **Fork** button on GitHub.  
+   - Alternatively, clone the repository directly using the following command:
 
+     ```bash
+     git clone https://github.com/chrisblakely01/mern-booking-app.git
+     ```
+
+2. Navigate into the project directory:
    ```bash
-   git clone https://github.com/chrisblakely01/mern-booking-app.git
    cd mern-booking-app
    ```
-
-2. Navigate to the cloned directory.
 
 ---
 
