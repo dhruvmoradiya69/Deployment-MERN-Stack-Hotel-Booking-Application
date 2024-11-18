@@ -40,4 +40,11 @@ pipeline {
             }
         }
     }
+    stage('Remove Unused Images'){
+        post{
+            always{
+                sh "docker image prune -f"
+            }
+        }
+    }
 }
