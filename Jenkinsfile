@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Remove Unused Images'){
             steps{
-                sh "docker rmi mern-frontend:latest mern-backend:latest"
+                sh "docker prune -a --force"
             }
         }
     }
