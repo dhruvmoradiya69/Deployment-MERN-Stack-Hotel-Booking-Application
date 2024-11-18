@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-  mongo:
-    container_name: mongo
-    image: mongo:7.0.12
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data:/data/db
-    networks:
-      - mern-network     
-
   backend:
     image: dhruvmoradiya69000/mern-backend:latest
     container_name: backend
