@@ -10,9 +10,7 @@ services:
     env_file:
       - ./backend/.env 
     networks:
-      - mern-network
-    depends_on:
-      - mongo  
+      - mern-network 
 
   frontend:
     image: dhruvmoradiya69000/mern-frontend:latest
