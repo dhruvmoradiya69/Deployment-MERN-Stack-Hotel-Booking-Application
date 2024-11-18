@@ -39,11 +39,9 @@ pipeline {
                 sh "docker compose down && docker compose up -d --build"
             }
         }
-    }
-    stage('Remove Unused Images'){
-        post{
-            always{
-                sh "docker image prune -f"
+        stage('Remove Unused Images'){
+            steps{
+                sh "docker rmi mern-frontend:latest mern-backend:latest"
             }
         }
     }
