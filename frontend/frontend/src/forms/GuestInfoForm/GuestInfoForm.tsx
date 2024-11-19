@@ -67,7 +67,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   };
 
   return (
-    <div className="flex flex-col p-4 bg-blue-200 gap-4">
+    <div className="flex flex-col p-4 bg-blue-200 gap-4 rounded-md shadow-md">
       <h3 className="text-md font-bold">₹{pricePerNight}</h3>
       <form
         onSubmit={
@@ -86,7 +86,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
               minDate={minDate}
               maxDate={maxDate}
               placeholderText="Check-in Date"
-              className="min-w-full bg-white p-2 focus:outline-none"
+              className="min-w-full bg-white p-2 border border-gray-300 rounded-md focus:outline-none hover:border-blue-400"
               wrapperClassName="min-w-full"
             />
           </div>
@@ -100,13 +100,13 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
               endDate={checkOut}
               minDate={minDate}
               maxDate={maxDate}
-              placeholderText="Check-in Date"
-              className="min-w-full bg-white p-2 focus:outline-none"
+              placeholderText="Check-out Date"
+              className="min-w-full bg-white p-2 border border-gray-300 rounded-md focus:outline-none hover:border-blue-400"
               wrapperClassName="min-w-full"
             />
           </div>
-          <div className="flex bg-white px-2 py-1 gap-2">
-            <label className="items-center flex">
+          <div className="flex bg-white px-2 py-1 gap-2 rounded-md border border-gray-300">
+            <label className="items-center flex space-x-2">
               Adults:
               <input
                 className="w-full p-1 focus:outline-none font-bold"
@@ -123,7 +123,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
                 })}
               />
             </label>
-            <label className="items-center flex">
+            <label className="items-center flex space-x-2">
               Children:
               <input
                 className="w-full p-1 focus:outline-none font-bold"
@@ -142,11 +142,11 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             )}
           </div>
           {isLoggedIn ? (
-            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
+            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl rounded-md transition duration-200">
               Book Now
             </button>
           ) : (
-            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
+            <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl rounded-md transition duration-200">
               Sign in to Book
             </button>
           )}
