@@ -9,6 +9,7 @@ import { v2 as cloudinary } from "cloudinary";
 import myHotelRoutes from "./routes/my-hotels";
 import hotelRoutes from "./routes/hotels";
 import myProfileRoutes from "./routes/my-profile";
+import bookingRoutes from "./routes/my-bookings";
 
 // Cloudinary config
 cloudinary.config({
@@ -71,6 +72,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-profile", myProfileRoutes);
+app.use("/api/my-bookings", bookingRoutes);
 
 // Start the server
 app.listen(3000, "0.0.0.0", () => {
