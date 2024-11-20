@@ -13,15 +13,16 @@ const TypeSection = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">Type</h2>
-      <div className="grid grid-cols-5 gap-2">
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">Type</h2>
+      <div className="grid grid-cols-3 grid-rows-4 gap-4">
         {hotelTypes.map((type) => (
           <label
-            className={
+            key={type}
+            className={`cursor-pointer text-sm font-semibold rounded-full px-6 py-3 transition duration-300 ${
               typeWatch === type
-                ? "cursor-pointer bg-blue-300 text-sm rounded-full px-4 py-2 font-semibold"
-                : "cursor-pointer bg-gray-300 text-sm rounded-full px-4 py-2 font-semibold"
-            }
+                ? "bg-blue-300 text-white ring-2 ring-blue-500"
+                : "bg-gray-200 text-gray-800 hover:bg-blue-100 hover:ring-2 hover:ring-blue-400"
+            }`}
           >
             <input
               type="radio"
@@ -36,7 +37,7 @@ const TypeSection = () => {
         ))}
       </div>
       {errors.type && (
-        <span className="text-red-500 text-sm font-bold">
+        <span className="text-red-500 text-sm font-semibold mt-2">
           {errors.type.message}
         </span>
       )}

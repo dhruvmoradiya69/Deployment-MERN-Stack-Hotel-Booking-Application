@@ -68,7 +68,7 @@ const MyHotels = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div>  
   );
 };
 

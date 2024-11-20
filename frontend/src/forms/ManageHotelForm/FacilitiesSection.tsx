@@ -9,14 +9,18 @@ const FacilitiesSection = () => {
   } = useFormContext<HotelFormData>();
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-3">Facilities</h2>
-      <div className="grid grid-cols-5 gap-3">
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Facilities</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {hotelFacilities.map((facility) => (
-          <label className="text-sm flex gap-1 text-gray-700">
+          <label
+            key={facility}
+            className="text-sm flex items-center gap-2 text-gray-700 cursor-pointer"
+          >
             <input
               type="checkbox"
               value={facility}
+              className="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
               {...register("facilities", {
                 validate: (facilities) => {
                   if (facilities && facilities.length > 0) {
@@ -26,13 +30,15 @@ const FacilitiesSection = () => {
                   }
                 },
               })}
+              aria-label={`Select ${facility}`}
             />
             {facility}
           </label>
         ))}
       </div>
+
       {errors.facilities && (
-        <span className="text-red-500 text-sm font-bold">
+        <span className="text-red-500 text-sm font-bold mt-2">
           {errors.facilities.message}
         </span>
       )}

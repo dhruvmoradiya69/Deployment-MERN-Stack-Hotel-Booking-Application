@@ -19,48 +19,51 @@ const MyHotels = () => {
 
   return (
     <div className="space-y-5">
-      <span className="flex justify-between">
-        <h1 className="text-3xl font-bold">My Hotels</h1>
+      <span className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-900">My Hotels</h1>
         <Link
           to="/add-hotel"
-          className="flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500"
+          className="bg-blue-600 text-white text-xl font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
         >
           Add Hotel
         </Link>
       </span>
-      <div className="grid grid-cols-1 gap-8">
+      <div className="space-y-8">
         {hotelData.map((hotel) => (
           <div
             data-testid="hotel-card"
-            className="flex flex-col justify-between border border-slate-300 rounded-lg p-8 gap-5"
+            className="flex flex-col justify-between bg-white border border-slate-300 rounded-lg p-8 gap-5 shadow-lg hover:shadow-xl transition-all duration-200"
           >
-            <h2 className="text-2xl font-bold">{hotel.name}</h2>
-            <div className="whitespace-pre-line">{hotel.description}</div>
-            <div className="grid grid-cols-5 gap-2">
-              <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-                <BsMap className="mr-1" />
-                {hotel.city}, {hotel.country}
-              </div>
-              <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-                <BsBuilding className="mr-1" />
-                {hotel.type}
-              </div>
-              <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-                <BiMoney className="mr-1" />₹{hotel.pricePerNight} per night
-              </div>
-              <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-                <BiHotel className="mr-1" />
-                {hotel.adultCount} adults, {hotel.childCount} children
-              </div>
-              <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-                <BiStar className="mr-1" />
-                {hotel.starRating} Star Rating
+            <h2 className="text-2xl font-bold text-gray-800">{hotel.name}</h2>
+            <div className="whitespace-pre-line text-gray-600 mt-2">{hotel.description}</div>
+            <div className="space-y-3 mt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-2">
+                  <BsMap className="text-gray-600" />
+                  <span>{hotel.city}, {hotel.country}</span>
+                </div>
+                <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-2">
+                  <BsBuilding className="text-gray-600" />
+                  <span>{hotel.type}</span>
+                </div>
+                <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-2">
+                  <BiMoney className="text-gray-600" />
+                  <span>₹{hotel.pricePerNight} per night</span>
+                </div>
+                <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-2">
+                  <BiHotel className="text-gray-600" />
+                  <span>{hotel.adultCount} adults, {hotel.childCount} children</span>
+                </div>
+                <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-2">
+                  <BiStar className="text-gray-600" />
+                  <span>{hotel.starRating} Star Rating</span>
+                </div>
               </div>
             </div>
-            <span className="flex justify-end">
+            <span className="flex justify-end mt-4">
               <Link
                 to={`/edit-hotel/${hotel._id}`}
-                className="flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500"
+                className="bg-blue-600 text-white text-lg font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
               >
                 View Details
               </Link>

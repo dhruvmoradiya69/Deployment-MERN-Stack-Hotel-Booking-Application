@@ -14,7 +14,7 @@ const MyProfile = () => {
   const { showToast } = useAppContext();
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProfileFormData>();
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<ProfileFormData>();
 
   const { data: profile, isLoading } = useQuery("profile", apiClient.getProfile, {
     onSuccess: (data) => {
@@ -48,7 +48,7 @@ const MyProfile = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center"><div className="spinner">Loading...</div></div>;
   }
 
   if (!profile) {
@@ -102,9 +102,10 @@ const MyProfile = () => {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300"
+              disabled={isSubmitting}
+              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium ${isSubmitting ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"} text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300`}
             >
-              Update Profile
+              {isSubmitting ? "Updating..." : "Update Profile"}
             </button>
           </div>
         </form>

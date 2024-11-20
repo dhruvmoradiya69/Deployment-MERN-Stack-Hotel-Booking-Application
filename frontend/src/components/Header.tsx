@@ -6,35 +6,41 @@ const Header = () => {
   const { isLoggedIn } = useAppContext();
 
   return (
-    <div className="bg-blue-800 py-6">
-      <div className="container mx-auto flex justify-between">
-        <span className="text-3xl text-white font-bold tracking-tight">
+    <div className="bg-blue-800 py-4 shadow-md">
+      <div className="container mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <span className="text-2xl md:text-3xl text-white font-bold tracking-wide">
           <Link to="/">HotelHub</Link>
         </span>
-        <span className="flex space-x-2">
+
+        {/* Navigation Links */}
+        <span className="flex items-center space-x-4">
           {isLoggedIn ? (
             <>
               <Link
-                className="flex items-center text-white px-3 font-bold hover:bg-blue-600 hover:rounded-md"
+                className="text-white text-sm md:text-base font-medium px-4 py-2 hover:bg-blue-500 hover:scale-105 rounded-md transition-all duration-300 ease-in-out"
                 to="/my-bookings"
               >
                 My Bookings
               </Link>
               <Link
-                className="flex items-center text-white px-3 font-bold hover:bg-blue-600 hover:rounded-md"
+                className="text-white text-sm md:text-base font-medium px-4 py-2 hover:bg-blue-500 hover:scale-105 rounded-md transition-all duration-300 ease-in-out"
                 to="/my-hotels"
               >
                 My Hotels
               </Link>
-              <Link className="flex items-center text-white px-3 font-bold hover:bg-blue-600 hover:rounded-md"
-              to="/my-profile"
-              >My profile</Link>
+              <Link
+                className="text-white text-sm md:text-base font-medium px-4 py-2 hover:bg-blue-500 hover:scale-105 rounded-md transition-all duration-300 ease-in-out"
+                to="/my-profile"
+              >
+                My Profile
+              </Link>
               <SignOutButton />
             </>
           ) : (
             <Link
               to="/sign-in"
-              className="flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100"
+              className="text-blue-800 text-sm md:text-base font-medium px-4 py-2 bg-white rounded-full hover:bg-gray-100 hover:scale-105 transition-all duration-300 ease-in-out"
             >
               Sign In
             </Link>

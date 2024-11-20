@@ -4,7 +4,7 @@ import TypeSection from "./TypeSection";
 import FacilitiesSection from "./FacilitiesSection";
 import GuestsSection from "./GuestsSection";
 import ImagesSection from "./ImagesSection";
-import { HotelType } from "../.././shared/types";
+import { HotelType } from "../../shared/types";
 import { useEffect } from "react";
 
 export type HotelFormData = {
@@ -70,21 +70,24 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
 
   return (
     <FormProvider {...formMethods}>
-      <form className="flex flex-col gap-10" onSubmit={onSubmit}>
+      <form
+        className="flex flex-col gap-10 px-8 py-6 md:px-32 md:py-8 rounded-lg"
+        onSubmit={onSubmit}
+      >
         <DetailsSection />
         <TypeSection />
         <FacilitiesSection />
         <GuestsSection />
         <ImagesSection />
-        <span className="flex justify-end">
+        <div className="flex justify-end mt-6">
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
+            className="bg-blue-600 text-white py-3 px-6 font-semibold rounded-lg hover:bg-blue-500 transition-colors duration-300 disabled:bg-gray-400"
           >
             {isLoading ? "Saving..." : "Save"}
           </button>
-        </span>
+        </div>
       </form>
     </FormProvider>
   );
