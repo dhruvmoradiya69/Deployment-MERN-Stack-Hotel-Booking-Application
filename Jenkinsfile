@@ -9,17 +9,12 @@ pipeline {
                 git url: "https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git", branch: "main"
             }
         }
-        stage('Build Frontend Image'){
+        stage('Build Image'){
             steps{
                 sh "docker build -t mern-frontend:latest ./frontend"
-            }
-        }
-        stage('Build Backend Image'){
-            steps{
                 sh "docker build -t mern-backend:latest ./backend"
             }
         }
-
         stage("Push Docker Images"){
             steps{
                  withCredentials([usernamePassword(
@@ -41,7 +36,7 @@ pipeline {
         }
         stage('Remove Unused Images'){
             steps{
-                sh "docker prune -a --force"
+                sh "docker prune -a -f"
             }
         }
     }
