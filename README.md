@@ -129,5 +129,3 @@ The app should now be accessible at `http://localhost:5173` by default.
 ## **Contact & Support**
 
 For issues, create a GitHub issue or reach out at `dhruvmoradiya69000@gmail.com`.
-
----
