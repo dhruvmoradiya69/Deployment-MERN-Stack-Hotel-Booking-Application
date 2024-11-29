@@ -29,14 +29,14 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Application'){
-            steps{
-                sh "docker compose down && docker compose up -d --build"
-            }
-        }
         stage('Remove Unused Images'){
             steps{
                 sh "docker image prune -a -f"
+            }
+        }
+        stage('Deploy Application'){
+            steps{
+                sh "docker compose down && docker compose up -d --build"
             }
         }
     }
