@@ -1,7 +1,7 @@
 pipeline {
 
-    agent any
- // agent { label 'worker' } 
+    // agent any
+    agent { label 'worker' } 
 
     stages{
         stage('Clone Repository'){
