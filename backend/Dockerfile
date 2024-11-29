@@ -3,7 +3,7 @@ FROM node:20.18.0 AS devlopment
 
 WORKDIR /app 
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm ci
 
