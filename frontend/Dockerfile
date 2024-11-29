@@ -10,7 +10,7 @@ RUN npm ci
 COPY . .
 
 # ------------------- Stage 2: Final Stage ------------------------------#
-FROM node:12.2.0-alpine AS final
+FROM node:20-bullseye-slim AS final
 
 WORKDIR /app
 
