@@ -8,37 +8,7 @@ import {
 } from "./shared/types";
 import { BookingFormData } from "./forms/BookingForm/BookingForm";
 
-let API_BASE_URL: string;
-
-try {
-
-  const AWSUrl = import.meta.env.VITE_API_BASE_AWS_URL;
-  const localhostUrl = import.meta.env.VITE_API_BASE_URL;
-
-  // Try the first URL (AWS)
-  if (AWSUrl) {
-    API_BASE_URL = AWSUrl;
-    fetch(API_BASE_URL).then(response => {
-      if (!response.ok) {
-        API_BASE_URL = localhostUrl;
-        console.log("Switching to second URL:", API_BASE_URL);
-      }
-    }).catch(() => {
-      API_BASE_URL = localhostUrl;
-      console.log("Error with first URL. Switching to second URL:", API_BASE_URL);
-    });
-  } else {
-    API_BASE_URL = localhostUrl;
-    console.log("First URL not available. Switching to second URL:", API_BASE_URL);
-  }
-
-} catch (error) {
-  const EmptyUrl = " ";
-  // In case of any error in the process, fallback to localhost
-  console.error("Error selecting API Base URL:", error);
-  API_BASE_URL = EmptyUrl;
-  console.log("Fallback to empty url:", API_BASE_URL);
-}
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const getProfile = async (): Promise<UserType> => {
   const response = await fetch(`${API_BASE_URL}/api/my-profile/profile`, {

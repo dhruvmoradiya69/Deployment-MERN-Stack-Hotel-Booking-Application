@@ -7,27 +7,35 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-    env_file:
-      - ./backend/.env 
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb+srv://admin:test%401234@bookingappdb.xwa1ktx.mongodb.net/?retryWrites=true&w=majority&appName=bookingappdb
+      - JWT_SECRET_KEY=h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1
+      - FRONTEND_URL=http://localhost:5173
+      - CLOUDINARY_CLOUD_NAME=dqgjtaxsf
+      - CLOUDINARY_API_KEY=551623449475562
+      - CLOUDINARY_API_SECRET=QZU-ZmyjcmSe6XuwivVTNDa3-wc
+      - STRIPE_API_KEY=sk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh
     networks:
-      - mern-network 
+      - mern-network
+    depends_on:
+      - frontend  # Ensure backend starts after frontend (optional, depends on your use case)
 
   frontend:
     image: dhruvmoradiya69000/mern-frontend:latest
     container_name: frontend
-    restart: unless-stopped  
+    restart: unless-stopped
     ports:
       - "5173:5173"
     networks:
       - mern-network
     depends_on:
-      - backend  
-    env_file:
-      - ./frontend/.env  
-       
+      - backend  # Ensure frontend starts after backend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:3000
+      - VITE_STRIPE_PUB_KEY=pk_test_51Pt1NbKc0T39VS5S6SNjFkgtlsyfq4CnhbIRtZkCdzywfq7ISZgCAwSU1vzyTOLB9bA6zevhsBjNTnZ9OIhvaQvE00L9ePc6E3
 
 networks:
   mern-network:
     driver: bridge
-    # docker-compose up --build -d
 
+# docker-compose up --build -d

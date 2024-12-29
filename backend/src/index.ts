@@ -47,17 +47,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-if (!process.env.FRONTEND_URL || !process.env.FRONTEND_URL_AWS) {
-  throw new Error('Both FRONTEND_URL and FRONTEND_URL_AWS environment variables must be defined.');
+if (process.env.FRONTEND_URL ) {
+  throw new Error('Both FRONTEND_URL environment variables must be defined.');
 }
 
 // Apply the CORS middleware with the allowed origins
 app.use(
   cors({
-    origin: [ 
-      process.env.FRONTEND_URL, 
-      process.env.FRONTEND_URL_AWS
-    ],
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   })
 );
