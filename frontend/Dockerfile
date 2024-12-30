@@ -1,23 +1,39 @@
 # ------------------- Stage 1: Build Stage ------------------------------#
-FROM node:21 AS frontend-builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
+# Install dependencies using npm ci
 RUN npm ci
 
+# Copy the source files to the container
 COPY . .
 
+# Set environment to production
+ENV NODE_ENV=production
+
+# Build the React application
+RUN npm run build
+
 # ------------------- Stage 2: Final Stage ------------------------------#
-FROM node:20-bullseye-slim AS final
+FROM nginx:stable-alpine AS production
 
-WORKDIR /app
+# Remove default Nginx static assets
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=frontend-builder /app .
+# Copy built assets from the builder stage to the Nginx folder
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-EXPOSE 5173
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-CMD ["npm", "run", "dev"]
+# Expose port 80 for web traffic
+EXPOSE 80
+
+# Run Nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
 
 # docker build -t mern-frontend:latest .

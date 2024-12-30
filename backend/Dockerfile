@@ -1,5 +1,5 @@
 # ------------------- Stage 1: Build Stage ------------------------------#
-FROM node:20.18.0 AS devlopment
+FROM node:18-alpine AS devlopment
 
 WORKDIR /app 
 
@@ -19,6 +19,8 @@ WORKDIR /app
 COPY --from=devlopment /app/package*.json ./
 
 COPY --from=devlopment /app/dist ./dist
+
+ENV NODE_ENV=production
 
 RUN npm ci --only=production
 
