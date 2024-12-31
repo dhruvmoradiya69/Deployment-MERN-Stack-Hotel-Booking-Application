@@ -1,5 +1,5 @@
 # ------------------- Stage 1: Build Stage ------------------------------#
-FROM node:18-alpine AS devlopment
+FROM node:18-alpine AS development
 
 WORKDIR /app 
 
@@ -16,9 +16,9 @@ FROM node:alpine AS production
 
 WORKDIR /app
 
-COPY --from=devlopment /app/package*.json ./
+COPY --from=development /app/package*.json ./
 
-COPY --from=devlopment /app/dist ./dist
+COPY --from=development /app/dist ./dist
 
 ENV NODE_ENV=production
 
