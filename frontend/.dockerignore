@@ -1,7 +1,6 @@
 # Node dependencies and build output
 node_modules
 dist
-build
 
 # Git and Docker files
 .git
@@ -18,11 +17,7 @@ docker-compose.yml
 
 # Environment files (to avoid leaking sensitive data into the Docker image)
 .env
-.env.local
-.env.*
 
 # OS-specific files
 .DS_Store
 Thumbs.db
-
-README.md

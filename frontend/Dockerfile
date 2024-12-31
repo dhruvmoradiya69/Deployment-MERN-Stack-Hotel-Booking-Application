@@ -12,14 +12,11 @@ RUN npm ci
 # Copy the source files to the container
 COPY . .
 
-# Set environment to production
-ENV NODE_ENV=production
-
 # Build the React application
 RUN npm run build
 
 # ------------------- Stage 2: Final Stage ------------------------------#
-FROM nginx:stable-alpine AS production
+FROM nginx:1.27-alpine-slim AS production
 
 # Remove default Nginx static assets
 RUN rm -rf /usr/share/nginx/html/*
