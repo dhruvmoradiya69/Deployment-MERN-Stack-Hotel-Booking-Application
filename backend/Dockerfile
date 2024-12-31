@@ -20,8 +20,6 @@ COPY --from=development /app/package*.json ./
 
 COPY --from=development /app/dist ./dist
 
-ENV NODE_ENV=production
-
 RUN npm ci --only=production
 
 EXPOSE 3000

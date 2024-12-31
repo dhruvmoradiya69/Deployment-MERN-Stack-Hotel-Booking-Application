@@ -14,6 +14,11 @@ const queryClient = new QueryClient({
   },
 });
 
+if (!sessionStorage.getItem('hasRefreshed')) {
+  sessionStorage.setItem('hasRefreshed', 'true');
+  window.location.reload();
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
   <QueryClientProvider client={queryClient}>  
