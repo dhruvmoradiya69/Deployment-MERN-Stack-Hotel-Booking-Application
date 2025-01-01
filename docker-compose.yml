@@ -3,7 +3,10 @@ version: '3.9'
 services:
 #-------------------frontend-------------------#
   frontend:
-    image: dhruvmoradiya69000/mern-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+  #  image: dhruvmoradiya69000/mern-frontend:latest
     container_name: frontend
     restart: unless-stopped
     ports:
@@ -12,15 +15,17 @@ services:
       - mern-network
     depends_on:
       - backend
-    environment:
-      - VITE_API_BASE_URL=http://backend:3000
+
 #-------------------backend-------------------#
   backend:
-    image: dhruvmoradiya69000/mern-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+   # image: dhruvmoradiya69000/mern-backend:latest
     container_name: backend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "5050:5050"
     environment:
       - MONGODB_CONNECTION_STRING=mongodb+srv://admin:test%401234@bookingappdb.xwa1ktx.mongodb.net/?retryWrites=true&w=majority&appName=bookingappdb
       - JWT_SECRET_KEY=h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1

@@ -22,7 +22,7 @@ COPY --from=development /app/dist ./dist
 
 RUN npm ci --only=production
 
-EXPOSE 3000
+EXPOSE 5050
 
 CMD ["npm", "start"]
 

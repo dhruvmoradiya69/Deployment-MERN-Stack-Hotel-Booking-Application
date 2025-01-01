@@ -79,7 +79,7 @@ STRIPE_API_KEY=
 - Generate a long, random string for `JWT_SECRET_KEY`. Tools like [random.org](https://random.org) or other key generators can help.
 
 ### **6. Frontend URL**
-- Set `FRONTEND_URL` to the location of your frontend app (e.g., `http://localhost:3000` for local development).
+- Set `FRONTEND_URL` to the location of your frontend app (e.g., `http://localhost:5050` for local development).
 
 ---
 
@@ -93,7 +93,7 @@ STRIPE_API_KEY=
    ```
 
 2. Set:
-   - `VITE_API_BASE_URL` to the backend server URL (e.g., `http://localhost:3000`).
+   - `VITE_API_BASE_URL` to the backend server URL (e.g., `http://localhost:5050`).
    - `VITE_STRIPE_PUB_KEY` to the public Stripe key.
 
 ---

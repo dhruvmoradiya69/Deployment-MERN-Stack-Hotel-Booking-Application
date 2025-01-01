@@ -99,8 +99,8 @@ app.use((req: Request, res: Response) => {
   res.status(404).json({ error: "Not Found" });
 });
 
-const server = app.listen(3000, () => {
-  console.log(`Server running on http://localhost:3000 🚀`);
+const server = app.listen(5050, () => {
+  console.log(`Server running on http://localhost:5050 🚀`);
 });
 
 process.on("SIGINT", async () => {
