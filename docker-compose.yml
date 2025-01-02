@@ -24,7 +24,7 @@ services:
     ports:
       - "5050:5050"
     environment:
-      - MONGODB_CONNECTION_STRING=mongodb://admin:secret@mongodb:27017/bookingapp?authSource=admin
+      - MONGODB_CONNECTION_STRING=mongodb://admin:secret@mongodb:27017/dbname?authSource=admin
       - JWT_SECRET_KEY=h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1
       - CLOUDINARY_CLOUD_NAME=dqgjtaxsf
       - CLOUDINARY_API_KEY=551623449475562

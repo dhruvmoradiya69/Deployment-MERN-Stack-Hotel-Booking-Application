@@ -9,44 +9,47 @@ import { v2 as cloudinary } from "cloudinary";
 import myHotelRoutes from "./routes/my-hotels";
 import hotelRoutes from "./routes/hotels";
 import bookingRoutes from "./routes/my-bookings";
-import compression from 'compression';
-import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
-import morgan from 'morgan';
-import process from 'process';
-import { config } from "dotenv";
+import compression from "compression";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import morgan from "morgan";
+import process from "process";
 
 // Validate environment variables
 const requiredEnvVars = [
   "CLOUDINARY_CLOUD_NAME",
   "CLOUDINARY_API_KEY",
   "CLOUDINARY_API_SECRET",
-  "MONGODB_CONNECTION_STRING",
+  "MONGODB_CONNECTION_STRING"
 ];
 
-requiredEnvVars.every(
-  key => process.env[key] 
-  ? true 
-  : (console.error(`Missing required environment variable: ${key}`), false)) 
-  && console.log("All Environment variables are set."
-);
+const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
+if (missingEnvVars.length > 0) {
+  console.error(`Missing required environment variables: ${missingEnvVars.join(", ")}`);
+  process.exit(1);
+} else {
+  console.log("✅ All required environment variables are set.");
+}
 
 // Configure Cloudinary
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+  api_key: process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
 });
 
 // Connect to MongoDB with error handling
-mongoose
-  .connect(process.env.MONGODB_CONNECTION_STRING as string)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGODB_CONNECTION_STRING!);
+    console.log(`✅ MongoDB connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
     process.exit(1);
-  });
+  }
+};
 
+// Initialize Express
 const app = express();
 
 // Basic security middleware
@@ -84,13 +87,14 @@ app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
 
+// Health check route
 app.get("/", (req: Request, res: Response) => {
-  res.send("🚀 Server is up and running, MongoDB is connected, and we're live on the web! 🌐")
+  res.send("🚀 Server is up and running, MongoDB is connected, and we're live on the web! 🌐");
 });
 
 // Global error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
+  console.error("❌ Error:", err.stack);
   res.status(500).json({ message: "Something went wrong!" });
 });
 
@@ -99,13 +103,18 @@ app.use((req: Request, res: Response) => {
   res.status(404).json({ error: "Not Found" });
 });
 
-const server = app.listen(5050, () => {
-  console.log(`Server running on http://localhost:5050 🚀`);
+// Start the server
+const server = app.listen(5050, async () => {
+  console.log("🚀 Server running on http://localhost:5050");
+  await connectDB();
 });
 
+// Graceful shutdown
 process.on("SIGINT", async () => {
-  console.log("Shutting down server...");
-  await mongoose.connection.close();
-  console.log("MongoDB connection closed");
-  process.exit(0);
+  console.log("\n⚠️ Shutting down server...");
+  server.close(async () => {
+    await mongoose.connection.close();
+    console.log("✅ MongoDB connection closed");
+    process.exit(0);
+  });
 });
