@@ -139,8 +139,7 @@ kubectl apply -f mongo-pv.yml -n mern-app
 - **mongo-pvc.yaml**: Defines persistent storage for MongoDB.
 - **mongodb-deployment.yaml**: Deploys MongoDB inside a container.
 - **mongodb-service.yaml**: Exposes MongoDB so the backend can access it.
-
-This will securely store the JWT secret that will be used for user authentication.
+- **mongo-pv.yml**: Specifies the persistent volume that MongoDB will use for data storage.
 
 ### 4. 🖥️ Deploy Backend Service
 
@@ -206,7 +205,7 @@ To access the frontend from your local browser, run:
 kubectl port-forward service/frontend 8081:80 -n mern-app
 ```
 
-You can now access the app by visiting [http://localhost:8081](http://localhost:8080) in your browser.
+You can now access the app by visiting [http://localhost:8081](http://localhost:8081) in your browser.
 
 ---
 
@@ -223,7 +222,7 @@ This command:
 - Runs the services in detached mode (`-d`).
 - Rebuilds the Docker images (`--build`) in case of any changes.
 
-Once the services are running, you can access the app at [http://localhost:8080](http://localhost:8080).
+Once the services are running, you can access the app at [http://localhost](http://localhost).
 
 ---
 
