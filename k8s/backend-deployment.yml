@@ -22,14 +22,32 @@ spec:
             - containerPort: 5050
           env:
             - name: MONGODB_CONNECTION_STRING
-              value: "mongodb://mongoadmin:secret@mongodb:27017/dbname?authSource=admin"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: MONGODB_CONNECTION_STRING
             - name: JWT_SECRET_KEY
-              value: "h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: JWT_SECRET_KEY
             - name: CLOUDINARY_CLOUD_NAME
-              value: "dqgjtaxsf"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: CLOUDINARY_CLOUD_NAME
             - name: CLOUDINARY_API_KEY
-              value: "551623449475562"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: CLOUDINARY_API_KEY
             - name: CLOUDINARY_API_SECRET
-              value: "QZU-ZmyjcmSe6XuwivVTNDa3-wc"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: CLOUDINARY_API_SECRET
             - name: STRIPE_API_KEY
-              value: "sk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh"
+              valueFrom:
+                secretKeyRef:
+                  name: All-secrets
+                  key: STRIPE_API_KEY
