@@ -1,91 +1,79 @@
-# **Setting Up the MERN Booking App**
+# **🚀 MERN-Stack Hotel Booking Application Deployment Guide**
 
-This guide walks you through the process of setting up the MERN Booking App on your local machine.
+This guide walks you through the process of setting up and deploying the **MERN Booking App** on your local machine using **Kubernetes (Kind)** or **Docker Compose**. Whether you're a student, a professional, or someone exploring the world of web development, this guide is designed to help you deploy the app with ease.
 
 ---
 
 ## **🔑 Key Features of Our Booking App**
 
-1. **User Authentication**: Learn to implement secure login and registration using HTTP cookies and JWT for a seamless user experience.  
-2. **Hotel Management**: Master the art of adding, editing, and viewing hotels. We cover everything from handling form inputs to managing state.  
-3. **Image Uploads**: Dive into integrating image uploads, a crucial feature for any booking platform.  
-4. **Search, Sort, & Filter**: Enhance the user experience with functionalities to search, sort, and filter hotels, making it easy for users to find their perfect stay.  
-5. **Online Payments**: Integrate Stripe for secure and efficient hotel booking payments.  
-6. **Booking Management**: Implement the feature to view and manage bookings, essential for any booking application.  
-7. **Recent Hotels on Home Page**: Display recently added hotels on the home page, keeping the content dynamic and engaging.
+1. **User Authentication**: Secure login and registration using HTTP cookies and JWT.
+2. **Hotel Management**: Add, edit, and view hotels with full state management.
+3. **Image Uploads**: Integrate image uploads for a complete booking platform experience.
+4. **Search, Sort, & Filter**: Enhance user experience with advanced search functionalities.
+5. **Online Payments**: Integrate Stripe for secure booking payments.
+6. **Booking Management**: View and manage user bookings effectively.
+7. **Dynamic Home Page**: Display recently added hotels on the home page.
 
 ---
 
-## **Prerequisites**
+## **📋 Prerequisites**
 
-Before starting, ensure you have the following installed:
+Before starting, ensure you have the following installed on your system. If you plan to run tests locally
 
-- **Node.js** (includes npm) - [Download Node.js](https://nodejs.org)  
+- **Node.js** (includes npm) - [Download Node.js](https://nodejs.org)
 - **MongoDB** (local or cloud) - [Sign up for MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- **Docker** - [Install Docker](https://www.docker.com/get-started)
+- **Kind** (Kubernetes in Docker) - [Install Kind](https://kind.sigs.k8s.io/)
+- **Kubectl** (Kubernetes Command Line Tool) - [Install Kubectl](https://kubernetes.io/docs/tasks/tools/)
 
 ---
 
 ## **Cloning or Forking the Repository**
 
-1. **Clone or Fork**:  
-   - If you want to contribute to the project, fork the repository by clicking the **Fork** button on GitHub.  
-   - Alternatively, clone the repository directly using the following command:
+1. **Clone or Fork**: 
+   - Fork the repository on GitHub if you plan to contribute.
+   - Or clone the repository directly using the following command:
 
      ```bash
-     https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git
+     git clone https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git
      ```
 
 2. Navigate into the project directory:
    ```bash
-   cd mern-booking-app
+   cd CI-CD-Deployment-HotelHub-MERN
    ```
 
 ---
 
-## **Backend Configuration**
+## **Application Configuration**
 
-### **1. Environment Variables**
-Navigate to the `backend` folder and create a `.env` file. Add the following:
+### **Backend**
 
-```plaintext
-MONGODB_CONNECTION_STRING=
-JWT_SECRET_KEY=
-FRONTEND_URL=
+1. **Environment Variables**: Create a `.env` file in the `backend` folder:
 
-# Cloudinary Variables
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
+   ```plaintext
+   MONGODB_CONNECTION_STRING=mongodb://admin:secret@mongodb:27017/dbname?authSource=admin
+   JWT_SECRET_KEY=
+   FRONTEND_URL=
 
-# Stripe
-STRIPE_API_KEY=
-```
+   # Cloudinary Variables
+   CLOUDINARY_CLOUD_NAME=
+   CLOUDINARY_API_KEY=
+   CLOUDINARY_API_SECRET=
 
-### **2. MongoDB Setup**
-- Sign up or log in to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-- Create a cluster and database, then obtain your connection string.
-- Add the connection string to `MONGODB_CONNECTION_STRING` in your `.env` file.
+   # Stripe
+   STRIPE_API_KEY=
+   ```
 
-### **3. Cloudinary Setup**
-- Create an account at [Cloudinary](https://cloudinary.com/).
-- Obtain your **cloud name**, **API key**, and **API secret** from the dashboard.
-- Add these details to the respective variables in `.env`.
+2. **Setup MongoDB**: Ensure your MongoDB instance uses the URL format provided above.
+3. **Cloudinary**: Sign up for [Cloudinary](https://cloudinary.com/) and add your credentials.
+4. **Stripe**: Add your API key from [Stripe](https://stripe.com/).
+5. **JWT Secret**: Generate a secure key for `JWT_SECRET_KEY`.
+6. **Frontend URL**: Set `FRONTEND_URL` to the location of your frontend app (e.g., `http://localhost:5173`).
 
-### **4. Stripe Setup**
-- Sign up or log in at [Stripe](https://stripe.com/).
-- Obtain your API key from the Stripe dashboard and add it to `STRIPE_API_KEY`.
+### **Frontend**
 
-### **5. JWT Secret**
-- Generate a long, random string for `JWT_SECRET_KEY`. Tools like [random.org](https://random.org) or other key generators can help.
-
-### **6. Frontend URL**
-- Set `FRONTEND_URL` to the location of your frontend app (e.g., `http://localhost:5050` for local development).
-
----
-
-## **Frontend Configuration**
-
-1. Navigate to the `frontend` folder and create a `.env` file:
+1. Create a `.env` file in the `frontend` folder:
 
    ```plaintext
    VITE_API_BASE_URL=
@@ -98,34 +86,108 @@ STRIPE_API_KEY=
 
 ---
 
-## **Running the Application**
+## **🐳 Deployment Using Docker Compose**
 
-### **Backend**
-1. Navigate to the `backend` directory.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the backend server:
-   ```bash
-   npm start
-   ```
+For a simpler setup, use Docker Compose:
 
-### **Frontend**
-1. Open a new terminal and navigate to the `frontend` directory.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the frontend server:
-   ```bash
-   npm run dev
-   ```
+```bash
+docker-compose up -d --build
+```
 
-The app should now be accessible at `http://localhost:5173` by default.
+Access the app at [http://localhost](http://localhost).
 
 ---
 
-## **Contact & Support**
+## **🚢 Deployment Using Kubernetes (Kind)**
 
-For issues, create a GitHub issue or reach out at `dhruvmoradiya69000@gmail.com`.
+### 📦 **Create a Kind Cluster**
+
+1. Create a Kubernetes cluster using Kind:
+   ```bash
+   kind create cluster --name mern-app
+   ```
+
+2. Navigate to the `k8s` folder:
+   ```bash
+   cd k8s
+   ```
+
+### 🗂️ **Create a Kubernetes Namespace**
+
+```bash
+kubectl apply -f namespace.yaml
+```
+
+### 🗄️ **Deploy MongoDB**
+
+```bash
+kubectl apply -f mongo-deployment.yaml -n mern-app
+kubectl apply -f mongo-service.yaml -n mern-app
+kubectl apply -f mongo-pvc.yaml -n mern-app
+kubectl apply -f mongo-pv.yaml -n mern-app
+```
+
+### 🔐 **Deploy Secrets**
+
+```bash
+kubectl apply -f secret.yaml -n mern-app
+```
+
+### 🖥️ **Deploy Backend Service**
+
+```bash
+kubectl apply -f backend-deployment.yaml -n mern-app
+kubectl apply -f backend-service.yaml -n mern-app
+```
+
+### 🌐 **Deploy Frontend Service**
+
+```bash
+kubectl apply -f frontend-deployment.yaml -n mern-app
+kubectl apply -f frontend-service.yaml -n mern-app
+```
+
+### 🔍 **Verification**
+
+1. Check pod status:
+   ```bash
+   kubectl get pods -n mern-app
+   ```
+2. Port forward the frontend service:
+   ```bash
+   kubectl port-forward service/frontend 8081:80 -n mern-app
+   ```
+   Access the app at [http://localhost:8081](http://localhost:8081).
+
+---
+
+## **🧹 Clean Up**
+
+### **Kubernetes**
+
+Remove the Kubernetes resources:
+```bash
+kind delete cluster --name mern-app
+```
+
+### **Docker Compose**
+
+Stop and remove Docker Compose services:
+```bash
+docker-compose down
+```
+---
+
+## **📸 Output Images**
+
+![alt text](<Screenshot from 2025-01-02 20-18-29.png>)
+![alt text](<Screenshot from 2025-01-02 20-34-33.png>)
+![alt text](<Screenshot from 2025-01-02 20-34-46.png>)
+![alt text](<Screenshot from 2025-01-02 20-34-57.png>)
+![alt text](<Screenshot from 2025-01-02 20-35-46.png>)
+
+---
+
+## **🎉 Conclusion**
+
+Congratulations! You’ve successfully set up and deployed the **MERN-Stack Hotel Booking Application** using **Kubernetes (via Kind)** or **Docker Compose**. Whether you're looking for a scalable deployment or a quick local setup, your app is ready to go!
