@@ -1,6 +1,40 @@
 version: '3.9'
 
 services:
+#-------------------mongodb-------------------#
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - mern-network
+              
+#-------------------backend-------------------#
+  backend:
+    image: dhruvmoradiya69000/mern-backend:latest
+    container_name: backend
+    restart: unless-stopped
+    ports:
+      - "5050:5050"
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://admin:secret@mongodb:27017/bookingapp?authSource=admin
+      - JWT_SECRET_KEY=h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1
+      - CLOUDINARY_CLOUD_NAME=dqgjtaxsf
+      - CLOUDINARY_API_KEY=551623449475562
+      - CLOUDINARY_API_SECRET=QZU-ZmyjcmSe6XuwivVTNDa3-wc
+      - STRIPE_API_KEY=sk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh
+    depends_on:
+      - mongodb
+    networks:
+      - mern-network
+
 #-------------------frontend-------------------#
   frontend:
     image: dhruvmoradiya69000/mern-frontend:latest
@@ -11,28 +45,16 @@ services:
     networks:
       - mern-network
     depends_on:
-      - backend
-      
-#-------------------backend-------------------#
-  backend:
-    image: dhruvmoradiya69000/mern-backend:latest
-    container_name: backend
-    restart: unless-stopped
-    ports:
-      - "5050:5050"
-    environment:
-      - MONGODB_CONNECTION_STRING=mongodb+srv://admin:test%401234@bookingappdb.xwa1ktx.mongodb.net/?retryWrites=true&w=majority&appName=bookingappdb
-      - JWT_SECRET_KEY=h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1
-      - CLOUDINARY_CLOUD_NAME=dqgjtaxsf
-      - CLOUDINARY_API_KEY=551623449475562
-      - CLOUDINARY_API_SECRET=QZU-ZmyjcmSe6XuwivVTNDa3-wc
-      - STRIPE_API_KEY=sk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh
-    networks:
-      - mern-network
+      - backend      
 
 #-------------------network-------------------#
 networks:
   mern-network:
     driver: bridge
 
+#-------------------volumes-------------------#
+volumes:
+  mongodb-data:
 # docker compose up --build -d
+
+# access mongodb container database "docker exec -it mongodb mongosh "mongodb://admin:secret@mongodb:27017/bookingapp?authSource=admin"
