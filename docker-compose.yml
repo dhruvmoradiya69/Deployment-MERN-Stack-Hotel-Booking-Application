@@ -3,14 +3,14 @@ version: '3.9'
 services:
 #-------------------mongodb-------------------#
   mongodb:
-    image: mongo:latest
+    image: dhruvmoradiya69000/mongo:latest
     container_name: mongodb
     restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_ROOT_USERNAME=admin
+      - MONGO_ROOT_PASSWORD=secret
     volumes:
       - mongodb-data:/data/db
     networks:
