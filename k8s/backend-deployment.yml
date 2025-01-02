@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: mern-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend-pod
+      namespace: mern-app
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: dhruvmoradiya69000/mern-backend:latest
+          ports:
+            - containerPort: 5050
+          env:
+            - name: MONGODB_CONNECTION_STRING
+              value: "mongodb://mongoadmin:secret@mongodb:27017/dbname?authSource=admin"
+            - name: JWT_SECRET_KEY
+              value: "h0iNngecVP6g7D2eC4xOUoWZLQJ4KoV1"
+            - name: CLOUDINARY_CLOUD_NAME
+              value: "dqgjtaxsf"
+            - name: CLOUDINARY_API_KEY
+              value: "551623449475562"
+            - name: CLOUDINARY_API_SECRET
+              value: "QZU-ZmyjcmSe6XuwivVTNDa3-wc"
+            - name: STRIPE_API_KEY
+              value: "sk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh"

@@ -3,4 +3,3 @@ node_modules
 dist
 backend/.env
 frontend/.env
-k8s/

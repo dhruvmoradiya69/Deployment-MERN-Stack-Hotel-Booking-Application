@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: mern-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      name: frontend-pod
+      namespace: mern-app
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: mern-frontend
+        image: dhruvmoradiya69000/mern-frontend:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: VITE_STRIPE_PUB_KEY
+          value: "pk_test_51Pt1NbKc0T39VS5S0l4GaLC6qMMyP0jrH5hVmP7I6KvSdErcvdsAxtkeaD8XpklFcl1hvVg9PFczImCCZbFjEQys00nq3b0NCh"
