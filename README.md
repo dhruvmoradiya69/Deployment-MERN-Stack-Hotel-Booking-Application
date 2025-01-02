@@ -176,15 +176,6 @@ Stop and remove Docker Compose services:
 ```bash
 docker-compose down
 ```
----
-
-## **📸 Output Images**
-
-![alt text](<Screenshot from 2025-01-02 20-18-29.png>)
-![alt text](<Screenshot from 2025-01-02 20-34-33.png>)
-![alt text](<Screenshot from 2025-01-02 20-34-46.png>)
-![alt text](<Screenshot from 2025-01-02 20-34-57.png>)
-![alt text](<Screenshot from 2025-01-02 20-35-46.png>)
 
 ---
 
