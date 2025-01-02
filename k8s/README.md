@@ -119,25 +119,26 @@ This command will create the `mern-app` namespace where all the app components w
 
 ### 2. 🗄️ Deploy MongoDB (Database)
 
+all are used to authenticate users. To deploy the JWT secret, run:
+
+```bash
+kubectl apply -f secret.yaml -n mern-app
+```
+
+### 3. 🔐 Deploy All Secret (Authentication)
+
 MongoDB is used for storing booking details and user data. To deploy MongoDB, apply the following commands:
 
 ```bash
 kubectl apply -f mongo-deployment.yaml -n mern-app
 kubectl apply -f mongo-service.yaml -n mern-app
 kubectl apply -f mongo-pvc.yaml -n mern-app
+kubectl apply -f mongo-pv.yml -n mern-app
 ```
 
 - **mongo-pvc.yaml**: Defines persistent storage for MongoDB.
 - **mongodb-deployment.yaml**: Deploys MongoDB inside a container.
 - **mongodb-service.yaml**: Exposes MongoDB so the backend can access it.
-
-### 3. 🔐 Deploy JWT Secret (Authentication)
-
-JWT (JSON Web Tokens) are used to authenticate users. To deploy the JWT secret, run:
-
-```bash
-kubectl apply -f secret.yaml -n mern-app
-```
 
 This will securely store the JWT secret that will be used for user authentication.
 
