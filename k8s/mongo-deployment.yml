@@ -22,7 +22,7 @@ spec:
         - containerPort: 27017
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          valueFrom: 
+          valueFrom:
             secretKeyRef:
               name: all-secrets
               key: MONGO_INITDB_ROOT_USERNAME
@@ -30,7 +30,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: all-secrets
-              key: MONGO_INITDB_ROOT_PASSWORD             
+              key: MONGO_INITDB_ROOT_PASSWORD
       volumes:
       - name: mongo-data
         persistentVolumeClaim:
