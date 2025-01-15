@@ -1,7 +1,0 @@
-{
-  "tasks": {
-    "test": "echo \"No test commands available for this repository.\"",
-    "build": "cd backend/ && npm install && cd ../frontend && npm install && cd ..",
-    "launch": "# For Docker Composedocker-compose up -d --build# For Kubernetes (Kind)kind create cluster --name mern-app && cd k8s && kubectl apply -f namespace.yaml && kubectl apply -f mongo-deployment.yaml -n mern-app && kubectl apply -f mongo-service.yaml -n mern-app && kubectl apply -f mongo-pvc.yaml -n mern-app && kubectl apply -f mongo-pv.yaml -n mern-app && kubectl apply -f secret.yaml -n mern-app && kubectl apply -f backend-deployment.yaml -n mern-app && kubectl apply -f backend-service.yaml -n mern-app && kubectl apply -f frontend-deployment.yaml -n mern-app && kubectl apply -f frontend-service.yaml -n mern-app && kubectl port-forward service/frontend 8081:80 -n mern-app"
-  }
-}
