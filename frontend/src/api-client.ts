@@ -282,3 +282,32 @@ export const fetchMyBookings = async (): Promise<HotelType[]> => {
 
   return response.json();
 };
+
+export const fetchUsers = async (): Promise<UserType[]> => {
+  const response = await fetch(`${API_BASE_URL}/api/admin/users`, {
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching users");
+  }
+
+  return response.json();
+};
+
+export const updateUserRole = async (userId: string, role: string) => {
+  const response = await fetch(`${API_BASE_URL}/api/admin/users/${userId}/role`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ role }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error updating user role");
+  }
+
+  return response.json();
+};
