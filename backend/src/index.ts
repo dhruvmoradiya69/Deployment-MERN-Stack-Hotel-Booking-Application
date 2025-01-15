@@ -9,6 +9,7 @@ import { v2 as cloudinary } from "cloudinary";
 import myHotelRoutes from "./routes/my-hotels";
 import hotelRoutes from "./routes/hotels";
 import bookingRoutes from "./routes/my-bookings";
+import adminRoutes from "./routes/admin";
 import compression from "compression";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
@@ -86,6 +87,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check route
 app.get("/", (req: Request, res: Response) => {

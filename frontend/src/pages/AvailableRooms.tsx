@@ -1,12 +1,10 @@
 import { useQuery } from "react-query";
-import { useParams, useNavigate } from "react-router-dom";
-import * as apiClient from "./../api-client";
+import { useParams } from "react-router-dom";
+import * as apiClient from "../api-client";
 import { AiFillStar } from "react-icons/ai";
-import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 
-const Detail = () => {
+const AvailableRooms = () => {
   const { hotelId } = useParams();
-  const navigate = useNavigate();
 
   const { data: hotel } = useQuery(
     "fetchHotelById",
@@ -15,10 +13,6 @@ const Detail = () => {
       enabled: !!hotelId,
     }
   );
-
-  const handleAvailableRoomsClick = () => {
-    navigate(`/available-rooms/${hotelId}`);
-  };
 
   if (!hotel) {
     return <></>;
@@ -58,23 +52,19 @@ const Detail = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4">
         <div className="whitespace-pre-line p-4 bg-slate-100 rounded-md">{hotel.description}</div>
         <div className="h-fit p-4 border border-slate-300 rounded-md shadow-md">
-          <GuestInfoForm
-            pricePerNight={hotel.pricePerNight}
-            hotelId={hotel._id}
-          />
+          <h2 className="text-xl font-bold mb-4">Available Rooms</h2>
+          {hotel.bookings.map((booking, index) => (
+            <div key={index} className="border border-slate-300 rounded-lg p-3 mb-2">
+              <div className="flex justify-between">
+                <span>{new Date(booking.checkIn).toDateString()} - {new Date(booking.checkOut).toDateString()}</span>
+                <span>{booking.adultCount} adults, {booking.childCount} children</span>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-
-      <div className="mt-4">
-        <button
-          onClick={handleAvailableRoomsClick}
-          className="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
-        >
-          View Available Rooms
-        </button>
       </div>
     </div>
   );
 };
 
-export default Detail;
+export default AvailableRooms;
