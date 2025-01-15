@@ -3,7 +3,7 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
-import { body } from "express-validator";
+import { body, validationResult } from "express-validator";
 import { HotelType } from "../shared/types";
 
 const router = express.Router();
@@ -36,6 +36,11 @@ router.post(
   ],
   upload.array("imageFiles", 6),
   async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
       const imageFiles = req.files as Express.Multer.File[];
       const newHotel: HotelType = req.body;
@@ -84,6 +89,11 @@ router.put(
   verifyToken,
   upload.array("imageFiles"),
   async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
       const updatedHotel: HotelType = req.body;
       updatedHotel.lastUpdated = new Date();

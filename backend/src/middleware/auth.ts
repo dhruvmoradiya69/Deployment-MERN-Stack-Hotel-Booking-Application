@@ -27,6 +27,12 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ message: "forbidden" });
+  }
+  next();
+};
 
+export { verifyAdmin };
 export default verifyToken;
-
