@@ -17,7 +17,6 @@ import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
 import MyProfile from "./pages/MyProfile";
-import AdminPanel from "./pages/AdminPanel";
 import 'animate.css';
 
 const App = () => {
@@ -116,14 +115,6 @@ const App = () => {
               element={
                 <Layout>
                   <MyBookings />
-                </Layout>
-              }
-            />
-            <Route
-              path="/admin"
-              element={
-                <Layout>
-                  <AdminPanel />
                 </Layout>
               }
             />
