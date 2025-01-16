@@ -9,7 +9,6 @@ declare global {
   }
 }
 
-// verifyToken is a default export
 const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies["auth_token"];
   if (!token) {

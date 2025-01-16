@@ -1,12 +1,11 @@
 import { useQuery } from "react-query";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 
 const Detail = () => {
   const { hotelId } = useParams();
-  const navigate = useNavigate();
 
   const { data: hotel } = useQuery(
     "fetchHotelById",
@@ -15,10 +14,6 @@ const Detail = () => {
       enabled: !!hotelId,
     }
   );
-
-  const handleAvailableRoomsClick = () => {
-    navigate(`/available-rooms/${hotelId}`);
-  };
 
   if (!hotel) {
     return <></>;
@@ -63,15 +58,6 @@ const Detail = () => {
             hotelId={hotel._id}
           />
         </div>
-      </div>
-
-      <div className="mt-4">
-        <button
-          onClick={handleAvailableRoomsClick}
-          className="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-500 transition duration-200"
-        >
-          View Available Rooms
-        </button>
       </div>
     </div>
   );
