@@ -8,22 +8,21 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: localhost
-    http:
+  - http:
       paths:
-#-----------------frontend-----------------#
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend
-            port:
-              number: 80
-#-----------------backend-----------------#
-      - pathType: Prefix
-        path: "/api"
-        backend:
-          service:
-            name: backend
-            port:
-              number: 5050  
+        #-----------------frontend-----------------#
+        - path: "/"
+          pathType: Prefix
+          backend:
+            service:
+              name: frontend
+              port:
+                number: 80
+        #-----------------backend-----------------#
+        - pathType: Prefix
+          path: "/api"
+          backend:
+            service:
+              name: backend
+              port:
+                number: 5050
