@@ -19,13 +19,15 @@ spec:
       http:
         paths:
           # Backend API routes
-          - path: /api/
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: backend
                 port:
                   number: 5050
+            annotations:
+              nginx.ingress.kubernetes.io/rewrite-target: /$1
           # Frontend routes
           - path: /
             pathType: Prefix
