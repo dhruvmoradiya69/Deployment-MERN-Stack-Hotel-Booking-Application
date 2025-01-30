@@ -5,14 +5,14 @@ metadata:
   namespace: mern-app
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
     - host: mern-booking.local  # Change this to your domain
       http:
         paths:
-          - path: /api  # Just a simple path prefix
+          - path: "/api"  # Just a simple path prefix
             pathType: Prefix
             backend:
               service:
@@ -25,4 +25,4 @@ spec:
               service:
                 name: frontend
                 port:
-                  number: 30001
+                  number: 80
