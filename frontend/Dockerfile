@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies using npm ci
-RUN npm ci && npm audit fix --force
+RUN npm ci
 
 # Copy the source files to the container
 COPY . .

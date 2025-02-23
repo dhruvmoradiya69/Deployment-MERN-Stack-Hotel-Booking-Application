@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci && npm audit fix --force
+RUN npm ci
 
 COPY . .
 
