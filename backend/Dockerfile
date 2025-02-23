@@ -20,7 +20,7 @@ COPY --from=development /app/package*.json ./
 
 COPY --from=development /app/dist ./dist
 
-RUN npm ci --only=production && npm audit fix --force
+RUN npm ci --only=production
 
 EXPOSE 5050
 
