@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm ci && npm audit fix --force
 
 COPY . .
 
@@ -20,7 +20,7 @@ COPY --from=development /app/package*.json ./
 
 COPY --from=development /app/dist ./dist
 
-RUN npm ci --only=production
+RUN npm ci --only=production && npm audit fix --force
 
 EXPOSE 5050
 
