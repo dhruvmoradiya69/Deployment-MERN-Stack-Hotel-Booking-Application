@@ -12,6 +12,13 @@ spec:
     - host: book-ai.com  # Change this to your domain
       http:
         paths:
+          - path: "/api"  # Just a simple path prefix
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 5050
           - path: /  # Matches any path not starting with /api
             pathType: Prefix
             backend:
