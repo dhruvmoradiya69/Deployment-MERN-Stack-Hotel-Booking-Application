@@ -4,18 +4,18 @@ metadata:
   name: backend-deployment
   namespace: mern-app-ns
   labels:
-    app: backend
+    app: server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: server
   template:
     metadata:
       name: backend-pod
       namespace: mern-app-ns
       labels:
-        app: backend
+        app: server
     spec:
       containers:
         - name: backend
