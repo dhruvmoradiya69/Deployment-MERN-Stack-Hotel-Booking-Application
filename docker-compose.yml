@@ -17,7 +17,7 @@ services:
       - mern-network
               
 #-------------------backend-------------------#
-  backend:
+  backend-service:
     image: dhruvmoradiya69000/mern-backend:latest
     container_name: backend
     restart: unless-stopped
