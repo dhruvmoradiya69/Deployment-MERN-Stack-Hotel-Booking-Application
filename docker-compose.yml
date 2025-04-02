@@ -45,7 +45,7 @@ services:
     networks:
       - mern-network
     depends_on:
-      - backend      
+      - backend-service      
 
 #-------------------network-------------------#
 networks:
