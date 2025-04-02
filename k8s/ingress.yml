@@ -12,13 +12,6 @@ spec:
     #- hosts: add you domain name 
     - http:
         paths:
-          - path: "/api"  # Just a simple path prefix
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-service
-                port:
-                  number: 5050
           - path: /  # Matches any path not starting with /api
             pathType: Prefix
             backend:
@@ -26,3 +19,10 @@ spec:
                 name: frontend
                 port:
                   number: 80
+          - path: "/api"  # Just a simple path prefix
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 5050
