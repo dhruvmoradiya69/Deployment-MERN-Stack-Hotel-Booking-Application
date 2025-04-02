@@ -9,14 +9,14 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: book-ai.com  # Change this to your domain
-      http:
+    #- hosts: add you domain name 
+    - http:
         paths:
           - path: "/api"  # Just a simple path prefix
             pathType: Prefix
             backend:
               service:
-                name: backend
+                name: backend-service
                 port:
                   number: 5050
           - path: /  # Matches any path not starting with /api
