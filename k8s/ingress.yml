@@ -11,13 +11,10 @@ metadata:
 
 spec:
   tls:
-  - hosts:
-    - example.com
-    secretName: bankapp-tls-secret
+  - secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
-    - host: example.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
