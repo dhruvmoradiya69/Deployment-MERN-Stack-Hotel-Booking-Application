@@ -11,10 +11,14 @@ metadata:
 
 spec:
   tls:
-  - secretName: mern-tls-secret
+  - tls:
+    - hosts:
+        - 123-45-67-89.nip.io
+      secretName: mern-tls-secret
   ingressClassName: nginx
   rules:
-    - http:
+    - hosts: 123-45-67-89.nip.io
+      http:
         paths:
           - path: /
             pathType: Prefix
