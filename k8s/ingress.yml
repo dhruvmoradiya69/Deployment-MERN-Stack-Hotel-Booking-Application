@@ -3,11 +3,16 @@ kind: Ingress
 metadata:
   name: mern-ingress
   namespace: mern-app-ns
-  
+
 spec:
+  tls:
+    - hosts:
+        - example.com
+      secretName: example-tls-secret
   ingressClassName: nginx
   rules:
-    - http:
+    - hosts: example.com
+      http:
         paths:
           - path: /
             pathType: Prefix
