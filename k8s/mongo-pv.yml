@@ -5,7 +5,7 @@ metadata:
   name: mern-app-pv
   namespace: mern-app-ns
   labels:
-    app: mern-app
+    app: mongodb
 spec:
   accessModes:
     - ReadWriteOnce
