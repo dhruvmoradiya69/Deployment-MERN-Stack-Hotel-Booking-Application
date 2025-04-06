@@ -13,11 +13,11 @@ spec:
   tls:
   - tls:
     - hosts:
-        - 123-45-67-89.nip.io
+        - 10.100.83.13.nip.io
       secretName: mern-tls-secret
   ingressClassName: nginx
   rules:
-    - hosts: 123-45-67-89.nip.io
+    - hosts: 10.100.83.13.nip.io
       http:
         paths:
           - path: /
