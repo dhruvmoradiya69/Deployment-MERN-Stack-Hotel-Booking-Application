@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: mongodb
   namespace: mern-app-ns
@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       app: mongodb
-  serviceName: mongodb-headless
   replicas: 1
   template:
     metadata:
@@ -37,13 +36,7 @@ spec:
         volumeMounts:
         - name: mongo-data
           mountPath: /data/db
-  volumeClaimTemplates:
-  - metadata:
-      name: mongo-data
-      labels:
-        app: mongodb
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+      volumes:
+      - name: mongo-data
+        persistentVolumeClaim:
+          claimName: mern-app-pvc
