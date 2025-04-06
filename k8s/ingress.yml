@@ -4,19 +4,24 @@ metadata:
   name: mern-ingress
   namespace: mern-app-ns
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
-  ingressClassName: nginx
   rules:
-    #- hosts: add you domain name 
     - http:
         paths:
-          - path: /  # Matches any path not starting with /api
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend
+                name: frontend-service
                 port:
                   number: 80
-           
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 5050
