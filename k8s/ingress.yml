@@ -10,15 +10,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod  
 
 spec:
-  tls:
-  - tls:
-    - hosts:
-        - 10.100.83.13.nip.io
-      secretName: mern-tls-secret
   ingressClassName: nginx
   rules:
-    - hosts: 10.100.83.13.nip.io
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
