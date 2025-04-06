@@ -6,13 +6,10 @@ metadata:
 
 spec:
   tls:
-    - hosts:
-        - example.com
       secretName: example-tls-secret
   ingressClassName: nginx
   rules:
-    - hosts: example.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
@@ -28,4 +25,3 @@ spec:
                 name: backend-service
                 port:
                   number: 5050
-                  
