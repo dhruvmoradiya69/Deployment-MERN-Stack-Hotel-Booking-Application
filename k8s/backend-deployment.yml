@@ -18,7 +18,7 @@ spec:
         app: server
     spec:
       containers:
-        - name: backend
+        - name: mern-backend
           image: dhruvmoradiya69000/mern-backend:latest
           ports:
             - containerPort: 5050
