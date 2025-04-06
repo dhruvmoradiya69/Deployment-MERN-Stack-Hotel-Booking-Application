@@ -12,11 +12,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - hello.book.com
+    - example.com
     secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
-    - host: hello.book.com
+    - host: example.com
       http:
         paths:
           - path: /
