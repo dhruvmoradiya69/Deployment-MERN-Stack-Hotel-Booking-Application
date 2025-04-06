@@ -5,15 +5,9 @@ metadata:
   namespace: mern-app-ns
 
 spec:
-  tls:
-    - hosts:
-        - mern-app.example.com
-      secretName: mern-tls-secret
   ingressClassName: nginx
   rules:
-    - hosts:
-        - mern-app.example.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
