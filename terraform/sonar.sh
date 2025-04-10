@@ -17,3 +17,4 @@ sudo apt-get update -y
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
+docker run -d --name sonar-container -p 9000:9000 sonarqube:lts-community
