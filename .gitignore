@@ -34,3 +34,5 @@ terraform.rc
 **/devops-key.pub
 
 .terraform.lock.hcl
+
+k8s/cert-issuer.yml
