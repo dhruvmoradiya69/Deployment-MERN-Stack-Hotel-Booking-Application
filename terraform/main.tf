@@ -8,7 +8,7 @@ data "aws_ami" "os_id" {
   }
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-24.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/*"]
   }
   # to find specific version of ami
   filter {
