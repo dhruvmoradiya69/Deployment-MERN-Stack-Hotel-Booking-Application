@@ -1,5 +1,14 @@
 version: '3.9'
 
+#-------------------network-------------------#
+networks:
+  mern-network:
+    driver: bridge
+
+#-------------------volumes-------------------#
+volumes:
+  mongodb-data:
+
 services:
 #-------------------mongodb-------------------#
   mongodb:
@@ -47,14 +56,6 @@ services:
     depends_on:
       - backend-service      
 
-#-------------------network-------------------#
-networks:
-  mern-network:
-    driver: bridge
-
-#-------------------volumes-------------------#
-volumes:
-  mongodb-data:
 # docker compose up --build -d
 
 # access mongodb container database "docker exec -it mongodb mongosh "mongodb://admin:secret@mongodb:27017/bookingapp?authSource=admin"
