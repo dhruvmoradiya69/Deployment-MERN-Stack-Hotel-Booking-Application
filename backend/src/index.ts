@@ -53,6 +53,9 @@ const connectDB = async () => {
 // Initialize Express
 const app = express();
 
+// Trust the proxy (important when behind ELB or Nginx)
+app.set("trust proxy", 1);  // Trust first proxy (like AWS ELB or Nginx)
+
 // Basic security middleware
 app.use(helmet());
 app.use(compression()); // Compress responses
