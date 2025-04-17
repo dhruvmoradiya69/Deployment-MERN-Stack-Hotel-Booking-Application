@@ -139,7 +139,6 @@ pipeline {
     </div>
   </body>
 </html>"""
+        }
     }
-}
-
 }
