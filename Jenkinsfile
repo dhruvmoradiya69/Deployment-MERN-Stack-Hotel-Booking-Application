@@ -131,11 +131,11 @@ pipeline {
       <h1>🔔 Build Notification</h1>
     </div>
      <div class="content">
-      <p><strong>Project:</strong> $PROJECT_NAME</p>
-      <p><strong>Status:</strong> ${currentBuild.result}</p>
-      <p><strong>Build Number:</strong> $BUILD_NUMBER</p>
-      <p><strong>Branch:</strong> $GIT_BRANCH</p>
-      <p><a class="btn" href="$BUILD_URL">🔍 View Build Console</a></p>
+      <p><strong>Project:</strong> ${ENV, var="JOB_NAME"}</p>
+    <p><strong>Status:</strong> ${currentBuild.result}</p>
+    <p><strong>Build Number:</strong> ${BUILD_NUMBER}</p>
+    <p><strong>Branch:</strong> ${ENV, var="GIT_BRANCH"}</p>
+    <p><a class="btn" href="${BUILD_URL}">🔍 View Build Console</a></p>
     </div>
   </body>
 </html>
