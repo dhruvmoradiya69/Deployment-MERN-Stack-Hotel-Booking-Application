@@ -96,14 +96,14 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            emailext attachLog: true,
-                attachmentsPattern: '**/trivy-*-report.html, **/dependency-check-report.xml',
-                mimeType: 'text/html',
-                subject: "Build #${BUILD_NUMBER} - ${currentBuild.result}",
-                to: 'dhruvmoradiya69000@gmail.com',
-                body: '''<html>
+   post {
+    always {
+        emailext attachLog: true,
+            attachmentsPattern: '**/trivy-*-report.html, **/dependency-check-report.xml',
+            mimeType: 'text/html',
+            subject: "Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+            to: 'dhruvmoradiya69000@gmail.com',
+            body: """<html>
   <head>
     <style>
       .header {
@@ -130,16 +130,16 @@ pipeline {
     <div class="header">
       <h1>🔔 Build Notification</h1>
     </div>
-     <div class="content">
-      <p><strong>Project:</strong> ${ENV, var="JOB_NAME"}</p>
-    <p><strong>Status:</strong> ${currentBuild.result}</p>
-    <p><strong>Build Number:</strong> ${BUILD_NUMBER}</p>
-    <p><strong>Branch:</strong> ${ENV, var="GIT_BRANCH"}</p>
-    <p><a class="btn" href="${BUILD_URL}">🔍 View Build Console</a></p>
+    <div class="content">
+      <p><strong>Project:</strong> ${env.JOB_NAME}</p>
+      <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
+      <p><strong>Build Number:</strong> ${BUILD_NUMBER}</p>
+      <p><strong>Branch:</strong> ${env.GIT_BRANCH}</p>
+      <p><a class="btn" href="${env.BUILD_URL}">🔍 View Build Console</a></p>
     </div>
   </body>
-</html>
-'''
-        }
+</html>"""
     }
+}
+
 }
