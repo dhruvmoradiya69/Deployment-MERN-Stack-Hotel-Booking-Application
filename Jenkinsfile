@@ -101,7 +101,7 @@ pipeline {
             emailext attachLog: true,
                 attachmentsPattern: '**/trivy-*-report.html, **/dependency-check-report.xml',
                 mimeType: 'text/html',
-                subject: "Build #${BUILD_NUMBER} - ${BUILD_STATUS}",
+                subject: "Build #${BUILD_NUMBER} - ${currentBuild.result}",
                 to: 'dhruvmoradiya69000@gmail.com',
                 body: '''<html>
   <head>
@@ -130,9 +130,9 @@ pipeline {
     <div class="header">
       <h1>🔔 Build Notification</h1>
     </div>
-    <div class="content">
+     <div class="content">
       <p><strong>Project:</strong> $PROJECT_NAME</p>
-      <p><strong>Status:</strong> $BUILD_STATUS</p>
+      <p><strong>Status:</strong> ${currentBuild.result}</p>
       <p><strong>Build Number:</strong> $BUILD_NUMBER</p>
       <p><strong>Branch:</strong> $GIT_BRANCH</p>
       <p><a class="btn" href="$BUILD_URL">🔍 View Build Console</a></p>
