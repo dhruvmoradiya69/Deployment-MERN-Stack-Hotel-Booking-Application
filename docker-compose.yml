@@ -56,6 +56,6 @@ services:
     depends_on:
       - backend-service      
 
-# docker compose up --build -d
+# docker compose down && docker compose up --build -d
 
 # access mongodb container database "docker exec -it mongodb mongosh "mongodb://admin:secret@mongodb:27017/bookingapp?authSource=admin"

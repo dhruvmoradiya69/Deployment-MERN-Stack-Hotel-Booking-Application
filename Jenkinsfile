@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git', branch: 'main'
+                git url: 'https://github.com/dhruvmoradiya69/Deployment-MERN-Stack-Hotel-Booking-Application.git', branch: 'main'
             }
         }
 
