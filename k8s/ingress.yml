@@ -7,9 +7,6 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    # Use standard rewrite annotation instead of configuration snippet
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    # Ensure CORS works
     nginx.ingress.kubernetes.io/enable-cors: "true"
 
 spec:
@@ -17,14 +14,14 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api/(.*)
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: backend-service
                 port:
                   number: 5050
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
