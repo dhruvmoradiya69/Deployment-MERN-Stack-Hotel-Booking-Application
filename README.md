@@ -35,12 +35,12 @@ Before starting, ensure you have the following installed on your system. If you 
    - Or clone the repository directly using the following command:
 
      ```bash
-     git clone https://github.com/dhruvmoradiya69/CI-CD-Deployment-HotelHub-MERN.git
+     git clone https://github.com/dhruvmoradiya69/Deployment-MERN-Stack-Hotel-Booking-Application.git
      ```
 
 2. Navigate into the project directory:
    ```bash
-   cd CI-CD-Deployment-HotelHub-MERN
+   cd Deployment-MERN-Stack-Hotel-Booking-Application
    ```
 
 ---
