@@ -13,6 +13,7 @@ This guide walks you through the process of setting up and deploying the **MERN 
 5. **Online Payments**: Integrate Stripe for secure booking payments.
 6. **Booking Management**: View and manage user bookings effectively.
 7. **Dynamic Home Page**: Display recently added hotels on the home page.
+8. **new things**:
 
 ---
 
