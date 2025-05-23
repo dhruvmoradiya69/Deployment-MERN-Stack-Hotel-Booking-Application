@@ -22,6 +22,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=secret
     volumes:
       - mongodb-data:/data/db
+      #- ./mongo-data:/data/db
     networks:
       - mern-network
               
