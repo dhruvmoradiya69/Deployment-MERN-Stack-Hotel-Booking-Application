@@ -8,7 +8,8 @@ import {
 } from "./shared/types";
 import { BookingFormData } from "./forms/BookingForm/BookingForm";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE_URL = "http://13.201.179.192:5050/";
+//const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const getProfile = async (): Promise<UserType> => {
   const response = await fetch(`${API_BASE_URL}/api/my-profile/profile`, {

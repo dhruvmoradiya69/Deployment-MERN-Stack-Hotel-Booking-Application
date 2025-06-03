@@ -13,7 +13,6 @@ This guide walks you through the process of setting up and deploying the **MERN 
 5. **Online Payments**: Integrate Stripe for secure booking payments.
 6. **Booking Management**: View and manage user bookings effectively.
 7. **Dynamic Home Page**: Display recently added hotels on the home page.
-8. **new things**:
 
 ---
 
@@ -28,6 +27,8 @@ Before starting, ensure you have the following installed on your system. If you 
 - **Kubectl** (Kubernetes Command Line Tool) - [Install Kubectl](https://kubernetes.io/docs/tasks/tools/)
 
 ---
+
+## aws s3 sync . s3://demo-web-host-td --recursive --delete
 
 ## **Cloning or Forking the Repository**
 
